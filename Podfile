@@ -6,8 +6,6 @@ target 'WeatherAppRX' do
   use_frameworks!
 
   # Pods for WeatherAppRX
-    pod 'RxSwift',    '~> 4.0'
-    pod 'RxCocoa',    '~> 4.0'
     pod 'Alamofire'
     pod 'AlamofireImage'
     pod 'GoogleMaps'
