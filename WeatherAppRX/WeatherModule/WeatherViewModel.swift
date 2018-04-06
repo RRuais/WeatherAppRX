@@ -39,24 +39,19 @@ class WeatherViewModel {
         // Async Completion Handler
         dispatch_group.notify(queue: .main) {
             if self.message == ErrorMessages.notFound.rawValue {
-                print("Has Error Message")
                 completion(nil, "", nil, nil, self.message!)
             } else {
-                print("No Error Message")
                 completion(self.weatherData, self.cityName!, self.cityCoordinates, self.currentWeather, "")
             }
         }
     }
     
     private func fetch7DayWeather() {
-        print("searcData: \(searchData)")
         guard let text = searchData?.1 else { return }
-        print("Text: \(text)")
         var url: URL?
         if (searchData?.0)!.rawValue == searchBy.zipCode.rawValue {
             url = URL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?zip=\(text)&units=imperial&appid=7ab7f589feda857e3b74f0e5e7c67fc3")!
         } else {
-            print("Text: \(text)")
             url = URL(string: "http://api.openweathermap.org/data/2.5/forecast/daily?q=\(text)&units=imperial&appid=7ab7f589feda857e3b74f0e5e7c67fc3")!
         }
             
@@ -121,7 +116,6 @@ class WeatherViewModel {
                 }
             }
             
-            print("JSON: \(json)")
             do {
                 let decoder = JSONDecoder()
                 let data = try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)

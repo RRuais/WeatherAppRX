@@ -93,13 +93,11 @@ class WeatherViewController: UIViewController {
     }
     
     func validateTextField() {
-        switch searchMethod {
-        case searchBy.zipCode:
+        if searchMethod == searchBy.zipCode {
             searchZipCode()
-        case searchBy.name:
+        }
+        if searchMethod == searchBy.name {
             searchCity()
-        default:
-            searchZipCode()
         }
     }
     
