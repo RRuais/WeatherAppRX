@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ArialRoundedMTBold.ttf">
+            <string>ArialRoundedMTBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Weather View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="WeatherAppRX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="neO-Te-ycZ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Tps-Pq-a5M">
+                                <rect key="frame" x="8" y="18" width="359" height="631"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoZ-Ma-NEg">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="80"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9Bi-NL-Xrn">
+                                                <rect key="frame" x="8" y="10" width="343" height="62"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dHC-mW-J9E">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    </textField>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TfA-jB-mTZ">
+                                                        <rect key="frame" x="0.0" y="33" width="343" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <segments>
+                                                            <segment title="Search Zip Code"/>
+                                                            <segment title="Search Name"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="0.073974331871740587" green="0.77227519018674573" blue="0.90680951591511938" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <connections>
+                                                            <action selector="switchSearchMethod:" destination="BYZ-38-t0r" eventType="valueChanged" id="WzK-Ax-2uJ"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.15523320569999999" green="0.1548320863" blue="0.1556343251" alpha="0.54534125769999997" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="9Bi-NL-Xrn" secondAttribute="bottom" id="7N7-OW-RAJ"/>
+                                            <constraint firstItem="9Bi-NL-Xrn" firstAttribute="top" secondItem="zoZ-Ma-NEg" secondAttribute="topMargin" id="Nti-Xd-nc3"/>
+                                            <constraint firstAttribute="height" constant="80" id="U4V-MV-wEt"/>
+                                            <constraint firstItem="9Bi-NL-Xrn" firstAttribute="leading" secondItem="zoZ-Ma-NEg" secondAttribute="leadingMargin" id="cMA-Yk-EZa"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="9Bi-NL-Xrn" secondAttribute="trailing" id="uw4-NQ-EmE"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OuT-pX-piZ">
+                                        <rect key="frame" x="0.0" y="84" width="359" height="80"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No City Loaded" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-qv-9Ht">
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="NWO-yZ-vq2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                                                <color key="textColor" red="0.99991279840000002" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHc-ER-ldC">
+                                                <rect key="frame" x="0.0" y="40" width="359" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="6Hl-kX-LEu"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                                                <color key="textColor" red="0.9958375096321106" green="0.99637061357498169" blue="0.9830126166343689" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mapsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="egs-lN-k0e">
+                                        <rect key="frame" x="0.0" y="168" width="359" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="nHf-xk-8Oz"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="VVK-hQ-Cqg">
+                                        <rect key="frame" x="0.0" y="272" width="359" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 Day Forcast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZf-Qj-HgN">
+                                                <rect key="frame" x="0.0" y="44.5" width="359" height="15.5"/>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
+                                                <color key="textColor" red="0.9958375096321106" green="0.99637061357498169" blue="0.9830126166343689" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="vnG-z4-CaT"/>
+                                        </constraints>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DLa-n8-bUc">
+                                        <rect key="frame" x="0.0" y="336" width="359" height="251"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="100" id="dT3-K6-7pL" customClass="WeatherTableViewCell" customModule="WeatherAppRX" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="359" height="100"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dT3-K6-7pL" id="yKS-x9-4Rf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="99.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NvW-to-usF">
+                                                            <rect key="frame" x="8" y="8" width="343" height="83.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEL-8Q-Sf1">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="83.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="70" id="SNp-Ko-6UE"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
+                                                                    <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="rqc-NN-ct8">
+                                                                    <rect key="frame" x="75" y="0.0" width="143" height="83.5"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yh5-CR-TdW">
+                                                                            <rect key="frame" x="0.0" y="12" width="60" height="60"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="60" id="H6o-xm-BJb"/>
+                                                                                <constraint firstAttribute="height" constant="60" id="jte-Yx-6Lm"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnk-Ns-1ea">
+                                                                            <rect key="frame" x="63" y="35" width="80" height="14"/>
+                                                                            <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="12"/>
+                                                                            <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CAP-1c-geS">
+                                                                    <rect key="frame" x="223" y="0.0" width="120" height="83.5"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PaB-wr-xk1">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="28"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvm-mO-pOf">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="28"/>
+                                                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
+                                                                                    <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHy-cG-6oy">
+                                                                                    <rect key="frame" x="60" y="0.0" width="60" height="28"/>
+                                                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
+                                                                                    <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uHx-qu-tib">
+                                                                            <rect key="frame" x="0.0" y="28" width="120" height="27.5"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3E3-96-12E">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="27.5"/>
+                                                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
+                                                                                    <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7j-Ml-xzj">
+                                                                                    <rect key="frame" x="60" y="0.0" width="60" height="27.5"/>
+                                                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
+                                                                                    <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7uD-ks-WCw">
+                                                                            <rect key="frame" x="0.0" y="55.5" width="120" height="28"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pny-24-7By">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="28"/>
+                                                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
+                                                                                    <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hd-wK-6fo">
+                                                                                    <rect key="frame" x="60" y="0.0" width="60" height="28"/>
+                                                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
+                                                                                    <color key="textColor" red="0.9999127984046936" green="1" blue="0.99988144636154175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                            <viewLayoutGuide key="safeArea" id="LZM-cD-AyP"/>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="120" id="XBp-zm-ekc"/>
+                                                                    </constraints>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="NvW-to-usF" firstAttribute="top" secondItem="yKS-x9-4Rf" secondAttribute="topMargin" id="KEf-OV-d0P"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="NvW-to-usF" secondAttribute="trailing" id="RLt-7K-dYP"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="NvW-to-usF" secondAttribute="bottom" id="xR5-Ez-Eh5"/>
+                                                        <constraint firstItem="NvW-to-usF" firstAttribute="leading" secondItem="yKS-x9-4Rf" secondAttribute="leadingMargin" id="xyQ-oR-1td"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.15523320573146679" green="0.15483208633681184" blue="0.15563432512612174" alpha="0.54534125766871167" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <outlet property="dateLabel" destination="GEL-8Q-Sf1" id="4TV-Dw-1Xw"/>
+                                                    <outlet property="descriptionLabel" destination="Rnk-Ns-1ea" id="PLw-VL-UQm"/>
+                                                    <outlet property="highLabel" destination="x7j-Ml-xzj" id="1xA-N9-W1X"/>
+                                                    <outlet property="humidityLabel" destination="6hd-wK-6fo" id="jYN-2N-TnW"/>
+                                                    <outlet property="lowLabel" destination="qHy-cG-6oy" id="N3d-5O-lzm"/>
+                                                    <outlet property="weatherImageView" destination="Yh5-CR-TdW" id="RdP-RF-8LX"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIH-zJ-Bvj">
+                                        <rect key="frame" x="0.0" y="591" width="359" height="40"/>
+                                        <color key="backgroundColor" red="0.073974331870000007" green="0.77227519020000002" blue="0.90680951590000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="aab-rB-pji"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                        <state key="normal" title="Clear">
+                                            <color key="titleColor" red="0.99991279840000002" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clearSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cZU-Vj-ifn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="PmZ-M0-ORg"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Tps-Pq-a5M" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="18" id="0A3-sz-GTP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Tps-Pq-a5M" secondAttribute="bottom" constant="18" id="5Mp-1p-QNw"/>
+                            <constraint firstItem="Tps-Pq-a5M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="J0J-dY-VlV"/>
+                            <constraint firstItem="neO-Te-ycZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NWs-wh-6CW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="neO-Te-ycZ" secondAttribute="trailing" id="USP-7Y-pUE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="neO-Te-ycZ" secondAttribute="bottom" id="f4K-eZ-ild"/>
+                            <constraint firstItem="neO-Te-ycZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="j69-ht-x96"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tps-Pq-a5M" secondAttribute="trailing" constant="8" id="vSg-6f-28B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="cityLabel" destination="TYh-qv-9Ht" id="zwC-9E-PvR"/>
+                        <outlet property="clearBtn" destination="JIH-zJ-Bvj" id="FLN-Jj-uc2"/>
+                        <outlet property="currentTempLabel" destination="mHc-ER-ldC" id="arE-DW-QCe"/>
+                        <outlet property="detailsBtn" destination="egs-lN-k0e" id="87U-75-xHe"/>
+                        <outlet property="forcastLabel" destination="KZf-Qj-HgN" id="FlM-DG-C14"/>
+                        <outlet property="searchMethodSegment" destination="TfA-jB-mTZ" id="OUe-Oq-ZZi"/>
+                        <outlet property="searchTextField" destination="dHC-mW-J9E" id="78k-xM-SXl"/>
+                        <outlet property="topView" destination="zoZ-Ma-NEg" id="HQv-Cd-SDj"/>
+                        <outlet property="weatherTableView" destination="DLa-n8-bUc" id="2BG-Za-Beg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="b3B-Xo-iVh">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="bpD-Tf-ixH" customClass="MapViewController" customModule="WeatherAppRX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bTM-Z7-DqR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="K0p-sK-O5b">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLJ-mU-JLr" customClass="GMSMapView">
+                                <rect key="frame" x="16" y="76" width="343" height="571"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08b-Vb-ON2">
+                                <rect key="frame" x="16" y="28" width="60" height="40"/>
+                                <color key="backgroundColor" red="0.073974331870000007" green="0.77227519020000002" blue="0.90680951590000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="X8M-8a-gFg"/>
+                                    <constraint firstAttribute="width" constant="60" id="m8n-4t-gUL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.9958375096321106" green="0.99637061357498169" blue="0.9830126166343689" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="bpD-Tf-ixH" eventType="touchUpInside" id="dYC-V3-TSH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="08b-Vb-ON2" firstAttribute="leading" secondItem="agh-gJ-wZ9" secondAttribute="leading" constant="16" id="4tk-cD-BMg"/>
+                            <constraint firstItem="TLJ-mU-JLr" firstAttribute="top" secondItem="08b-Vb-ON2" secondAttribute="bottom" constant="8" id="6ZK-Vm-eUu"/>
+                            <constraint firstItem="K0p-sK-O5b" firstAttribute="leading" secondItem="bTM-Z7-DqR" secondAttribute="trailing" constant="-375" id="8Rw-gt-A4b"/>
+                            <constraint firstItem="08b-Vb-ON2" firstAttribute="top" secondItem="agh-gJ-wZ9" secondAttribute="top" constant="8" id="B9N-3N-cda"/>
+                            <constraint firstItem="agh-gJ-wZ9" firstAttribute="trailing" secondItem="K0p-sK-O5b" secondAttribute="trailing" id="C96-9w-bKm"/>
+                            <constraint firstItem="agh-gJ-wZ9" firstAttribute="bottom" secondItem="TLJ-mU-JLr" secondAttribute="bottom" constant="20" id="VcI-oZ-3wl"/>
+                            <constraint firstItem="K0p-sK-O5b" firstAttribute="top" secondItem="bTM-Z7-DqR" secondAttribute="top" id="aPr-JC-vtY"/>
+                            <constraint firstItem="TLJ-mU-JLr" firstAttribute="leading" secondItem="agh-gJ-wZ9" secondAttribute="leading" constant="16" id="gE8-1N-WzR"/>
+                            <constraint firstItem="agh-gJ-wZ9" firstAttribute="trailing" secondItem="TLJ-mU-JLr" secondAttribute="trailing" constant="16" id="o2L-se-ouX"/>
+                            <constraint firstItem="agh-gJ-wZ9" firstAttribute="bottom" secondItem="K0p-sK-O5b" secondAttribute="bottom" id="o7f-zh-XcS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="agh-gJ-wZ9"/>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="08b-Vb-ON2" id="c6k-O1-K1F"/>
+                        <outlet property="mapView" destination="TLJ-mU-JLr" id="bvL-Ij-lCW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZd-bH-Gak" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398" y="69"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="1562" height="945"/>
+        <image name="mapsIcon" width="1600" height="1600"/>
+    </resources>
+</document>
