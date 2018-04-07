@@ -16,7 +16,7 @@
 		8468DDFC2073237D00529D20 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468DDFB2073237D00529D20 /* WeatherViewModel.swift */; };
 		8468DDFE2073253600529D20 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468DDFD2073253600529D20 /* WeatherModel.swift */; };
 		8468DE022075C78E00529D20 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8468DE012075C78E00529D20 /* Utilities.swift */; };
-		849DCF4C207738B30031F7B5 /* FoundationExtensions\\.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DCF4B207738B30031F7B5 /* FoundationExtensions\\.swift */; };
+		849DCF4C207738B30031F7B5 /* Extensions\\.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DCF4B207738B30031F7B5 /* Extensions\\.swift */; };
 		849DCF5020773E330031F7B5 /* EmptyTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849DCF4F20773E330031F7B5 /* EmptyTableView.xib */; };
 		849DCF5320773F570031F7B5 /* EmptyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DCF5220773F570031F7B5 /* EmptyTableView.swift */; };
 		849DCF56207750A60031F7B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849DCF55207750A60031F7B5 /* MapViewController.swift */; };
@@ -39,7 +39,7 @@
 		8468DDFB2073237D00529D20 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		8468DDFD2073253600529D20 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		8468DE012075C78E00529D20 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		849DCF4B207738B30031F7B5 /* FoundationExtensions\\.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoundationExtensions\\\\.swift"; sourceTree = "<group>"; };
+		849DCF4B207738B30031F7B5 /* Extensions\\.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions\\\\.swift"; sourceTree = "<group>"; };
 		849DCF4F20773E330031F7B5 /* EmptyTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableView.xib; sourceTree = "<group>"; };
 		849DCF5220773F570031F7B5 /* EmptyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableView.swift; sourceTree = "<group>"; };
 		849DCF55207750A60031F7B5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				8468DE012075C78E00529D20 /* Utilities.swift */,
-				849DCF4B207738B30031F7B5 /* FoundationExtensions\\.swift */,
+				849DCF4B207738B30031F7B5 /* Extensions\\.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 				849DCF5820775A220031F7B5 /* MapModel.swift in Sources */,
 				8468DDFE2073253600529D20 /* WeatherModel.swift in Sources */,
 				8468DE022075C78E00529D20 /* Utilities.swift in Sources */,
-				849DCF4C207738B30031F7B5 /* FoundationExtensions\\.swift in Sources */,
+				849DCF4C207738B30031F7B5 /* Extensions\\.swift in Sources */,
 				8468DDF420730F8D00529D20 /* WeatherViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

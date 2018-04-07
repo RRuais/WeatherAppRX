@@ -9,5 +9,7 @@ target 'WeatherAppRX' do
     pod 'Alamofire'
     pod 'AlamofireImage'
     pod 'GoogleMaps'
+    pod 'GooglePlaces'
+    pod 'GooglePlacePicker'
 
 end

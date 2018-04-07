@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 class WeatherViewController: UIViewController {
     
@@ -26,12 +27,16 @@ class WeatherViewController: UIViewController {
     var currentWeather = CurrentWeather()
     var currentCity: String?
     var coordinates: Coordinates?
-    var searchMethod = searchBy.zipCode
-    var indicatorView: UIActivityIndicatorView?
     
+    var indicatorView: UIActivityIndicatorView?
+    var placesClient: GMSPlacesClient!
+    
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var autocompleteController: GMSAutocompleteViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupApp()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,103 +47,43 @@ class WeatherViewController: UIViewController {
         return true
     }
     
-    func setupView() {
-        clearBtn.layer.cornerRadius = 10
-        topView.layer.cornerRadius = 10
+    func setupApp() {
         hideWeatherDetailView()
         setupTableView()
         setupTextField()
         setupGestures()
         setupLoadingIndicator()
-    }
-    
-    func setupLoadingIndicator() {
-    
-            indicatorView =
-                UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
-            let iSize = indicatorView!.sizeThatFits(emptyView.bounds.size)
-            
-            let iRect = CGRect( x:emptyView.bounds.width/2 - iSize.width/2, y:emptyView.bounds.height/2 - iSize.height/2, width:iSize.width,height:iSize.height )
-            indicatorView?.frame = iRect
         
-        indicatorView?.hidesWhenStopped = true
-        indicatorView?.activityIndicatorViewStyle =
-            UIActivityIndicatorViewStyle.whiteLarge
-        emptyView.addSubview(self.indicatorView!)
-        indicatorView?.isHidden = true
+        // Setup Google Places
+        placesClient = GMSPlacesClient.shared()
+        setupGooglePlacesControls()
     }
     
-    func addIndicator() {
-        indicatorView?.isHidden = false
-        indicatorView?.startAnimating()
-    }
-    
-    func removeIndicator() {
-        indicatorView?.isHidden = true
-        indicatorView?.stopAnimating()
-    }
-
-    @IBAction func switchSearchMethod(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            searchMethod = searchBy.zipCode
-            searchTextField.placeholder = "Enter Zip Code"
-        case 1:
-            searchMethod = searchBy.name
-            searchTextField.placeholder = "Enter City"
-        default:
-            searchMethod = searchBy.zipCode
-            searchTextField.placeholder = "Enter Zip Code"
-        }
-    }
-    
-    func validateTextField() {
-        if searchMethod == searchBy.zipCode {
-            searchZipCode()
-        }
-        if searchMethod == searchBy.name {
-            searchCity()
-        }
-    }
-    
-    func searchZipCode() {
-        if (searchTextField.text?.isEmpty)! || searchTextField.text?.characters.count != 5 || !(searchTextField.text?.isNumeric)! {
-            presentAlert(title: "Opps!", message: "Please Enter a 5 digit zip code.", vc: self)
-        } else {
-            fetchWeatherData()
-        }
-    }
-    
-    func searchCity() {
-        if (searchTextField.text?.isEmpty)! || (searchTextField.text?.isNumeric)! {
-            presentAlert(title: "Opps!", message: "Please Enter a City", vc: self)
-        } else {
-            fetchWeatherData()
-        }
+    func setupView() {
+        clearBtn.layer.cornerRadius = 10
+        topView.layer.cornerRadius = 10
     }
     
     func fetchWeatherData() {
         clear()
         addIndicator()
-        let searchText = searchTextField.text
-        let search = (searchMethod, searchText!)
-        weatherViewModel.fetchWeatherData(search: search) { (weatherData, city, coordinates, currentWeather, errorMessage) in
+        weatherViewModel.fetchWeather(coord: coordinates!) { (weatherData, currentWeather, error) in
             
-            if errorMessage == ErrorMessages.notFound.rawValue {
+            if error == ErrorMessages.notFound.rawValue {
                 presentAlert(title: "Opps!", message: "City not found. Please try again.", vc: self)
-                self.clear()
-                self.removeIndicator()
+                    self.clear()
+                    self.removeIndicator()
             } else {
                 self.weatherData = weatherData!
-                self.coordinates = coordinates!
                 self.currentWeather = currentWeather!
-                self.currentCity = city
                 self.hideEmptyTableView()
-                self.showWeatherDetailView()
                 self.setupWeatherDetailsView()
+                self.showWeatherDetailView()
                 self.weatherTableView.reloadData()
                 self.removeIndicator()
             }
+
+            
         }
     }
     
@@ -188,6 +133,7 @@ class WeatherViewController: UIViewController {
         
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard(sender:)))
         self.view.addGestureRecognizer(tap2)
+        
     }
     
     @objc func loadMapsView(sender:UITapGestureRecognizer) {
@@ -203,6 +149,10 @@ class WeatherViewController: UIViewController {
     }
     
 }
+
+// ******************************
+// TableView Methods
+// ******************************
 
 extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     func setupTableView() {
@@ -247,14 +197,80 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// ******************************
+// TestField Delegate Methods
+// ******************************
+
 extension WeatherViewController: UITextFieldDelegate {
     func setupTextField() {
         searchTextField.delegate = self
     }
-    
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        present(autocompleteController!, animated: true, completion: nil)
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchTextField.resignFirstResponder()
-        validateTextField()
         return true
+    }
+}
+
+// ******************************
+// Google Places Methods
+// ******************************
+
+extension WeatherViewController: GMSAutocompleteViewControllerDelegate {
+    
+    func setupGooglePlacesControls() {
+        autocompleteController = GMSAutocompleteViewController()
+        autocompleteController?.delegate = self
+        let filter = GMSAutocompleteFilter()
+        filter.type = .city
+        autocompleteController?.autocompleteFilter = filter
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("PLACE: \(place)")
+        self.coordinates = Coordinates(lat: Float(place.coordinate.latitude), lon: Float(place.coordinate.longitude))
+        self.currentCity = place.name
+        self.fetchWeatherData()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// ******************************
+// Activity Indicator Methods
+// ******************************
+
+extension WeatherViewController {
+    func setupLoadingIndicator() {
+        indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        let iSize = indicatorView!.sizeThatFits(emptyView.bounds.size)
+        let iRect = CGRect( x:emptyView.bounds.width/2 - iSize.width/2, y:emptyView.bounds.height/2 - iSize.height/2, width:iSize.width,height:iSize.height )
+        indicatorView?.frame = iRect
+        indicatorView?.hidesWhenStopped = true
+        indicatorView?.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.whiteLarge
+        emptyView.addSubview(self.indicatorView!)
+        indicatorView?.isHidden = true
+    }
+    
+    func addIndicator() {
+        indicatorView?.isHidden = false
+        indicatorView?.startAnimating()
+    }
+    
+    func removeIndicator() {
+        indicatorView?.isHidden = true
+        indicatorView?.stopAnimating()
     }
 }

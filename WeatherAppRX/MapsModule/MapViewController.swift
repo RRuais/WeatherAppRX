@@ -27,6 +27,10 @@ class MapViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     func setupView() {
         backBtn.layer.cornerRadius = 10
     }

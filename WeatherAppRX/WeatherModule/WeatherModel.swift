@@ -63,8 +63,3 @@ enum ErrorMessages: String {
     case notFound = "City not found"
     case ErrorLoading = "Error loading data"
 }
-
-enum searchBy: String {
-    case name = "name"
-    case zipCode = "zipCode"
-}
